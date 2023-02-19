@@ -1,0 +1,40 @@
+netstat -nplt | grep 8000
+netstat -nplt | grep 8005
+5:21
+nohup gunicorn --bind=0:8000 --workers=3  conf.wsgi >> gunicorn.log &
+nohup gunicorn --bind=0:8005 --workers=3  app.wsgi >> gunicorn.log &
+nohup celery worker -A app --loglevel=info &
+5:23
+IP : 10.20.20.107
+username : ubuntu
+password : ubuntu
+ssh ubuntu@10.20.20.107
+netstat -nplt | grep 8002
+nohup daphne -b 0.0.0.0 -p 8001 conf.asgi:application >> daphne.log &
+nohup daphne -b 0.0.0.0 -p 8006 conf.asgi:application >> daphne.log &
+sudo apt-get install supervisor
+nohup gunicorn --bind=0:8002 --workers=3  uhzaride.wsgi >> gunicorn.log &
+export local_task_url=http://127.0.0.1:8000/api/v1/run_htz_multi_jobs1/?
+export SIMULATOR_HOST=http://192.168.25.137
+export SIMULATOR_PORT=8000
+export SECRET_KEY=django-insecure-_y=^ss+^87-#mys8+uu!99l%ul$+4bs%=t5jbv07i@7t2g7o(2
+export DEBUG=True
+export DATABASE_NAME=jadops
+export DATABASE_USER=postgres
+export DATABASE_PASS=1234
+export DATABASE_HOST=0.0.0.0
+export DATABASE_PORT=5432
+export CHANNEL_LAYERS=0.0.0.0
+export CHANNEL_PORT=6379
+export ES_IP=http://10.20.20.105:9200/
+export KAFKA_BROKER_IP=10.20.20.104:9092
+export local_task_url=http://127.0.0.1:8000/api/v1/run_htz_multi_jobs1/?
+export SIMULATOR_HOST=http://192.168.25.137
+export SIMULATOR_PORT=8000
+#db user for 10.20.20.111 server
+export DATABASE_USER=jadops
+sudo -i -u postgres
+
+
+https://www.vultr.com/docs/install-the-postgis-extension-for-postgresql-on-ubuntu-linux/
+https://computingforgeeks.com/how-to-install-postgis-on-ubuntu-linux/

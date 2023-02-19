@@ -1,0 +1,22 @@
+upstream channels-backend {server localhost:8000;}
+
+server {
+listen 8080;
+server_name 0.0.0.0;
+location = /favicon.ico { access_log off; log_not_found off; }
+location /static/ {
+root /home/rapidev/Desktop/Project/AI_video_analytics;
+}
+location /media/ {
+root /home/rapidev/Desktop/Project/AI_video_analytics;
+}
+location / {
+proxy_pass http://channels-backend;
+proxy_http_version 1.1;
+proxy_set_header Upgrade $http_upgrade;
+proxy_set_header Connection "Upgrade";
+proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+proxy_set_header Host $http_host;
+proxy_redirect off;
+}
+}

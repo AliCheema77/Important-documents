@@ -1,0 +1,13 @@
+][Unit]
+Description=daphne daemon
+Requires=daphne.socket
+After=network.target
+
+[Service]
+Type=simple
+User=rapidev
+WorkingDirectory=/home/rapidev/Desktop/Project/AI_video_analytics
+ExecStart=/home/rapidev/Desktop/Project/AI_video_analytics/venv/bin/daphne -b 0.0.0.0 -p 8005 AI_video_analytics.asgi:application
+
+[Install]
+WantedBy=multi-user.target

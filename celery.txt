@@ -1,0 +1,28 @@
+We use Supervisor to run celery and celery beat
+serice file is created on
+sudo nano /etc/supervisor/conf.d/simulation.conf
+///simulatio.config
+[program:simulation]
+command=/home/ubuntu/simulated-env/bin/celery -A app worker --loglevel=INFO
+directory=/home/ubuntu/simulation/
+user=www-data
+autostart=true
+autorestart=true
+stdout_logfile=/home/ubuntu/simulation/logs/celery.log
+redirect_stderr=true
+
+[program:simulation-celerybeat]
+command=/path/to/virtualenv/bin/celery -A app beat -l info
+directory=/home/ubuntu/simulation/
+user=www-data
+autostart=true
+autorestart=true
+redirect_stderr=true
+stdout_logfile=/home/ubuntu/simulation/logs/celerybeat.log
+//end
+
+
+link
+https://medium.com/swlh/asynchronous-task-with-django-celery-redis-and-production-using-supervisor-ef920725da03
+sudo supervisorctl start simulation
+sudo supervisorctl start simulation-celerybeat
